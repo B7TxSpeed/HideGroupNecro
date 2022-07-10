@@ -1,0 +1,7 @@
+## Title: Hide Group - Necromancer extension
+## Author: @B7TxSpeed
+## APIVersion: 100000
+## Version: 1.0.0
+## DependsOn: HideGroup
+
+HideGroupNecro.lua
