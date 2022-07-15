@@ -6,6 +6,7 @@ version=`grep -Po "(?<=Version: )[0-9]+\.[0-9]+\.[0-9]+" HideGroupNecro.txt`
 mkdir -p HideGroupNecro
 cp HideGroupNecro.txt HideGroupNecro/
 cp *.lua HideGroupNecro/
+cp *.xml HideGroupNecro/
 # Create ZIP and clean directory
 tar -acf HideGroupNecro-$version.zip HideGroupNecro
 rm -rf HideGroupNecro
