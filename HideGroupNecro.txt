@@ -1,4 +1,5 @@
-## Title: Hide Group - Necromancer compatible
+## Title: Hide Group - Necromancer support
+## Description: Hides your group members with necromancer support
 ## Author: @B7TxSpeed
 ## APIVersion: 101034 101035
 ## Version: 1.1.0
