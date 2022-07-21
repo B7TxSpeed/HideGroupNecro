@@ -2,7 +2,7 @@
 ## Description: Hides your group members with necromancer support
 ## Author: @B7TxSpeed
 ## APIVersion: 101034 101035
-## Version: 1.1.0
+## Version: 1.1.1
 ## SavedVariables: HideGroupNecroSavedVars
 
 HideGroupNecro.lua
