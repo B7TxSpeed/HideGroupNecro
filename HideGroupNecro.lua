@@ -84,7 +84,7 @@ function HG.init(event, addon)
 		["GroupMemberHealthBars"] = GetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS),
 		["HideState"] = false,
 	}
-	HG.savedVariables = ZO_SavedVars:New("HideGroupSavedVars", 1, nil, HG.defaults, GetWorldName())
+	HG.savedVariables = ZO_SavedVars:New("HideGroupNecroSavedVars", 1, nil, HG.defaults, GetWorldName())
 	
 	ZO_CreateStringId('SI_BINDING_NAME_HIDEGROUPNECRO_TOGGLE', 'Show/Hide Group Members')
 	SLASH_COMMANDS["/hidegroup"] = HG.switchCommand
