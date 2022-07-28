@@ -1,4 +1,4 @@
-## Title: Hide Group - Necromancer support
+## Title: Hide Group Necro v1.1.1
 ## Description: Hides your group members with necromancer support
 ## Author: @B7TxSpeed
 ## APIVersion: 101034 101035

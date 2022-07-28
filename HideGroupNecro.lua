@@ -1,7 +1,7 @@
 -- Global definitions
 HideGroupNecro = HideGroupNecro or {
 	name = "HideGroupNecro",
-	version = "1.0.0",
+	version = "1.1.1",
 }
 local HG = HideGroupNecro
 local EM = EVENT_MANAGER
