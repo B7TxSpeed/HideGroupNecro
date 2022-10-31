@@ -1,9 +1,14 @@
-## Title: Hide Group Necro v1.1.1
+## Title: HideGroupNecro
 ## Description: Hides your group members with necromancer support
-## Author: @B7TxSpeed
+## Author: |cff0000@B7TxSpeed|r
 ## APIVersion: 101034 101035
-## Version: 1.1.1
+## Version: 1.2.0
 ## SavedVariables: HideGroupNecroSavedVars
+## DependsOn: LibAddonMenu-2.0
 
 HideGroupNecro.lua
+HideGroupNecroMenu.lua
 Bindings.xml
+--- Locales
+locales/en.lua
+locales/$(language).lua
