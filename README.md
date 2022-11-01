@@ -10,6 +10,7 @@ This extension aims to provide a solution to those willing to run Hide Group on 
 
 ## Changelog
 
+* Version 1.2.1: Fix menu loading and bump API to Firesong.
 * Version 1.2.0: Add options to hide or show nameplates and hide bars with hide group enabled. 
 * Version 1.1.1: Fix saved variables.
 * Version 1.1.0: Standalone version with no hindrance from the crown store NPC after each fight.
