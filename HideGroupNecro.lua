@@ -2,7 +2,7 @@
 HideGroupNecro = HideGroupNecro or {
 	name = "HideGroupNecro",
 	author = "|cff0000@B7TxSpeed|r",
-	version = "1.2.0",
+	version = "1.2.1",
 }
 local HG = HideGroupNecro
 local EM = EVENT_MANAGER
@@ -102,6 +102,9 @@ function HG.init(event, addon)
 
 	EM:RegisterForEvent(HG.name.."PlayerActivated", EVENT_PLAYER_ACTIVATED, playerActivatedHandler)
 	EM:RegisterForEvent(HG.name.."PlayerCombatState", EVENT_PLAYER_COMBAT_STATE, playerCombatStateHandler)
+
+	-- Load Menu
+	HG.loadMenu()
 end
 
 EM:RegisterForEvent(HG.name.."Init", EVENT_ADD_ON_LOADED, HG.init)
