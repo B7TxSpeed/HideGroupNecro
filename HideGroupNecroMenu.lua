@@ -1,4 +1,4 @@
-local HG = HideGroupNecro or {}
+local HG = HideGroupNecro
 local LAM = LibAddonMenu2
 
 --- Menu
@@ -9,7 +9,7 @@ function HG.loadMenu()
         author = HG.author,
         version = HG.version,
     }
-    local panel = LAM:RegisterAddonPanel(HG.name, panelData)
+    local panel = LAM:RegisterAddonPanel(HG.name.."Menu", panelData)
 
     local optionsData = {
         {
@@ -50,5 +50,5 @@ function HG.loadMenu()
             width = "half",
         },
     }
-    LAM:RegisterOptionControls(HG.name, optionsData)
+    LAM:RegisterOptionControls(HG.name.."Menu", optionsData)
 end
