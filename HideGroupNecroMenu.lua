@@ -39,14 +39,20 @@ function HG.loadMenu()
             type = "checkbox",
             name = function() return GetString(HG_MENU_HIDE_NAMEPLATES) end,
             getFunc = function() return HG.savedVariables.HideNameplates end,
-            setFunc = function(value) HG.savedVariables.HideNameplates = value end,
+            setFunc = function(value)
+                HG.savedVariables.HideNameplates = value
+                if HG.savedVariables.HideState then SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES, HG.nameplateChoice(value)) end
+            end,
             width = "half",
         },
         {
             type = "checkbox",
             name = function() return GetString(HG_MENU_HIDE_HEALTHBARS) end,
             getFunc = function() return HG.savedVariables.HideHealthBars end,
-            setFunc = function(value) HG.savedVariables.HideHealthBars = value end,
+            setFunc = function(value)
+                HG.savedVariables.HideHealthBars = value
+                if HG.savedVariables.HideState then SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, HG.nameplateChoice(value)) end
+            end,
             width = "half",
         },
     }

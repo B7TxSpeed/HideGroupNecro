@@ -19,6 +19,14 @@ local function debugMessage(message)
 	end
 end
 
+function HG.nameplateChoice(hide)
+    if hide then
+        return tostring(NAMEPLATE_CHOICE_NEVER)
+    else
+        return tostring(NAMEPLATE_CHOICE_ALWAYS)
+    end
+end
+
 --- Picked from Wheels HideGroup 2.1
 function HG.hideMembers(enable)
 	if enable then
@@ -30,24 +38,16 @@ function HG.hideMembers(enable)
 			HG.savedVariables.GroupMemberNameplates = GetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES)
 			HG.savedVariables.GroupMemberHealthBars = GetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS)
 		end
-		if HG.savedVariables.HideNameplates then
-			SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES, tostring(NAMEPLATE_CHOICE_NEVER))
-		end
-		if HG.savedVariables.HideHealthBars then
-			SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, tostring(NAMEPLATE_CHOICE_NEVER))
-		end
+		SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES, HG.nameplateChoice(HG.savedVariables.HideNameplates))
+		SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, HG.nameplateChoice(HG.savedVariables.HideHealthBars))
 	else
 		debugMessage("ShowGroup")
 		SetCrownCrateNPCVisible(false)
 		groupIsHidden = false
 		if HG.savedVariables.HideState ~= enable then
 			d("HideGroupNecro: Showing group members")
-			if HG.savedVariables.HideNameplates then
-				SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES, tostring(HG.savedVariables.GroupMemberNameplates))
-			end
-			if HG.savedVariables.HideHealthBars then
-				SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, tostring(HG.savedVariables.GroupMemberHealthBars))
-			end
+			SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES, tostring(HG.savedVariables.GroupMemberNameplates))
+			SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, tostring(HG.savedVariables.GroupMemberHealthBars))
 		end
 	end
 	HG.savedVariables.HideState = enable
