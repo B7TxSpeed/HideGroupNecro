@@ -1,8 +1,9 @@
 -- Global definitions
 HideGroupNecro = HideGroupNecro or {
 	name = "HideGroupNecro",
-	author = "|cff0000@B7TxSpeed|r",
-	version = "1.2.1",
+	label = "HideGroup|c5050ffNecro|r",
+	author = "|c00fffe@B7TxSpeed|r",
+	version = "1.2.2",
 }
 local HG = HideGroupNecro
 local EM = EVENT_MANAGER

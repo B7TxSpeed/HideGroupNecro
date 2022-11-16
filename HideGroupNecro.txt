@@ -1,8 +1,8 @@
-## Title: HideGroup|c0000ffNecro|r
+## Title: HideGroup|c5050ffNecro|r
 ## Description: Hides your group members with necromancer support
-## Author: |cff0000@B7TxSpeed|r
+## Author: |c00fffe@B7TxSpeed|r
 ## APIVersion: 101036
-## Version: 1.2.1
+## Version: 1.2.2
 ## SavedVariables: HideGroupNecroSavedVars
 ## DependsOn: LibAddonMenu-2.0
 

@@ -5,7 +5,7 @@ local LAM = LibAddonMenu2
 function HG.loadMenu()
     local panelData = {
         type = "panel",
-        name = HG.name,
+        name = HG.label,
         author = HG.author,
         version = HG.version,
     }
