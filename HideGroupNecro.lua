@@ -7,6 +7,7 @@ HideGroupNecro = HideGroupNecro or {
 }
 local HG = HideGroupNecro
 local EM = EVENT_MANAGER
+local SM = SCENE_MANAGER
 local isNecro = GetUnitClassId('player') == 5
 
 -- Utility variables
@@ -28,6 +29,20 @@ function HG.nameplateChoice(hide)
     end
 end
 
+-- Picked from SpeedRun
+local function ForceGroupVisible()
+	if not IsPlayerActivated() then return end
+	local scene = SM.currentScene:GetName()
+	if scene == "stats" then return end
+	SM:Show("stats")
+	zo_callLater(function()
+	  if scene == "hudui" then SM:Show("hud")
+	  else
+		if scene ~= "" then SM:Show(scene) end
+	  end
+	end, 20)
+  end
+
 --- Picked from Wheels HideGroup 2.1
 function HG.hideMembers(enable)
 	if enable then
@@ -43,6 +58,9 @@ function HG.hideMembers(enable)
 		SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, HG.nameplateChoice(HG.savedVariables.HideHealthBars))
 	else
 		debugMessage("ShowGroup")
+		if not isNecro then
+			ForceGroupVisible()
+		end
 		SetCrownCrateNPCVisible(false)
 		groupIsHidden = false
 		if HG.savedVariables.HideState ~= enable then
