@@ -10,6 +10,8 @@ This extension aims to provide a solution to those willing to run Hide Group on 
 
 ## Changelog
 
+* Version 1.2.4: Fix showing group members immediately after disabling HideGroup.
+* Version 1.2.3: Show group members immediately after disabling HideGroup.
 * Version 1.2.2: Fix hotkey bindings and improve the nameplates and health bars options. 
 * Version 1.2.1: Fix menu loading and bump API to Firesong.
 * Version 1.2.0: Add options to hide or show nameplates and hide bars with hide group enabled. 
