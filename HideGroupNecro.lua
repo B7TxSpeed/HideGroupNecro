@@ -36,6 +36,7 @@ local function ForceGroupVisible()
 	if scene == "stats" then return end
 	SM:Show("stats")
 	zo_callLater(function()
+	  SetCrownCrateNPCVisible(false)
 	  if scene == "hudui" then SM:Show("hud")
 	  else
 		if scene ~= "" then SM:Show(scene) end
@@ -58,10 +59,7 @@ function HG.hideMembers(enable)
 		SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, HG.nameplateChoice(HG.savedVariables.HideHealthBars))
 	else
 		debugMessage("ShowGroup")
-		if not isNecro then
-			ForceGroupVisible()
-		end
-		SetCrownCrateNPCVisible(false)
+		ForceGroupVisible()
 		groupIsHidden = false
 		if HG.savedVariables.HideState ~= enable then
 			d("HideGroupNecro: Showing group members")
