@@ -10,6 +10,7 @@ This extension aims to provide a solution to those willing to run Hide Group on 
 
 ## Changelog
 
+* Version 1.2.5: Add chinese translation (done by justjavac).
 * Version 1.2.4: Fix showing group members immediately after disabling HideGroup.
 * Version 1.2.3: Show group members immediately after disabling HideGroup.
 * Version 1.2.2: Fix hotkey bindings and improve the nameplates and health bars options. 
