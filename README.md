@@ -10,6 +10,7 @@ This extension aims to provide a solution to those willing to run Hide Group on 
 
 ## Changelog
 
+* Version 1.2.6: Fix a necro-specific issue on multi-instances fights, such as SE Chimera boss fight (special thanks to Lulu_Laventus for testing). Add a debug toggle option in the menu.
 * Version 1.2.5: Add chinese translation (done by justjavac).
 * Version 1.2.4: Fix showing group members immediately after disabling HideGroup.
 * Version 1.2.3: Show group members immediately after disabling HideGroup.
