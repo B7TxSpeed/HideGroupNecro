@@ -12,11 +12,10 @@ local isNecro = GetUnitClassId('player') == 5
 
 -- Utility variables
 local groupIsHidden = false
-local debug = false
 
 --- Debug function
 local function debugMessage(message)
-	if debug then
+	if HG.savedVariables.Debug then
 		d("HideGroupNecro: "..message)
 	end
 end
@@ -71,7 +70,7 @@ function HG.hideMembers(enable)
 end
 
 local function playerActivatedHandler()
-	if HG.savedVariables.HideState then
+	if HG.savedVariables.HideState and not IsUnitInCombat("player") then
 		HG.hideMembers(HG.savedVariables.HideState)
 	end
 end
@@ -111,6 +110,7 @@ function HG.init(event, addon)
 		["HideNameplates"] = true,
 		["HideHealthBars"] = true,
 		["HideState"] = false,
+		["Debug"] = false,
 	}
 	HG.savedVariables = ZO_SavedVars:New("HideGroupNecroSavedVars", 1, nil, HG.defaults, GetWorldName())
 	

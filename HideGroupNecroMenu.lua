@@ -30,6 +30,16 @@ function HG.loadMenu()
                 HG.hideMembers(value)
                 HideGroupEnabled.label:SetText(string.format(HG.savedVariables.HideState and "|c00FF00%s|r" or "|cFF0000%s|r", GetString(HG_MENU_ENABLED)))
             end,
+            width = "half",
+        },
+        {
+            reference = "DebugEnabled",
+            type = "checkbox",
+            name = function() return GetString(HG_MENU_DEBUG) end,
+            default = false,
+            getFunc = function() return HG.savedVariables.Debug end,
+            setFunc = function(value) HG.savedVariables.Debug = value end,
+            width = "half",
         },
         {
             type = "header",
