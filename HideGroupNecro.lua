@@ -3,12 +3,11 @@ HideGroupNecro = HideGroupNecro or {
 	name = "HideGroupNecro",
 	label = "HideGroup|c5050ffNecro|r",
 	author = "|c00fffe@B7TxSpeed|r",
-	version = "1.2.6",
+	version = "1.3.0",
 }
 local HG = HideGroupNecro
 local EM = EVENT_MANAGER
 local SM = SCENE_MANAGER
-local isNecro = GetUnitClassId('player') == 5
 
 -- Utility variables
 local groupIsHidden = false
@@ -18,6 +17,30 @@ local function debugMessage(message)
 	if HG.savedVariables.Debug then
 		d("HideGroupNecro: "..message)
 	end
+end
+
+-- Subclassing filter
+local function IsAtLeastOneSkillLineActive(skillLineIds)
+    local numSkillLines = GetNumSkillLines(SKILL_TYPE_CLASS)
+
+    for skillLineIndex = 1, numSkillLines do
+        local _, _, _, _, _, _, isActive, _  = GetSkillLineInfo(SKILL_TYPE_CLASS, skillLineIndex)
+
+        if isActive then
+            local skillLineId = GetSkillLineId(SKILL_TYPE_CLASS, skillLineIndex)
+            for _, targetId in ipairs(skillLineIds) do
+                if skillLineId == targetId then
+                    return true
+                end
+            end
+        end
+    end
+
+    return false
+end
+
+local function isNecro()
+	return GetUnitClassId('player') == 5 or IsAtLeastOneSkillLineActive({131, 133})
 end
 
 function HG.nameplateChoice(hide)
@@ -77,7 +100,7 @@ end
 
 local function playerCombatStateHandler(_, inCombat)
 	-- Player's combat state has changed
-	if inCombat and HG.savedVariables.HideState and isNecro and groupIsHidden then
+	if inCombat and HG.savedVariables.HideState and isNecro() and groupIsHidden then
 		debugMessage("ShowGroup for necro")
 		SetCrownCrateNPCVisible(false)
 		groupIsHidden = false
