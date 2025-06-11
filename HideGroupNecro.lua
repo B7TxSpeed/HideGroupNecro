@@ -3,7 +3,7 @@ HideGroupNecro = HideGroupNecro or {
 	name = "HideGroupNecro",
 	label = "HideGroup|c5050ffNecro|r",
 	author = "|c00fffe@B7TxSpeed|r",
-	version = "1.3.0",
+	version = "1.3.1",
 }
 local HG = HideGroupNecro
 local EM = EVENT_MANAGER
@@ -21,26 +21,24 @@ end
 
 -- Subclassing filter
 local function IsAtLeastOneSkillLineActive(skillLineIds)
-    local numSkillLines = GetNumSkillLines(SKILL_TYPE_CLASS)
+	for _, skillLineId in ipairs(skillLineIds) do
+		local skillLineData = SKILLS_DATA_MANAGER:GetSkillLineDataById(skillLineId)
+		if skillLineData and skillLineData:IsActive() then
+			return true
+		end
+	end
 
-    for skillLineIndex = 1, numSkillLines do
-        local _, _, _, _, _, _, isActive, _  = GetSkillLineInfo(SKILL_TYPE_CLASS, skillLineIndex)
-
-        if isActive then
-            local skillLineId = GetSkillLineId(SKILL_TYPE_CLASS, skillLineIndex)
-            for _, targetId in ipairs(skillLineIds) do
-                if skillLineId == targetId then
-                    return true
-                end
-            end
-        end
-    end
-
-    return false
+	return false
 end
 
+local necroSkillLineIds = {
+	131, -- Grave Lord
+	-- Bone Tyrant can be ignored since hiding corpses does not hinder its skills.
+	133, -- Living Death
+}
+
 local function isNecro()
-	return GetUnitClassId('player') == 5 or IsAtLeastOneSkillLineActive({131, 133})
+	return IsAtLeastOneSkillLineActive(necroSkillLineIds)
 end
 
 function HG.nameplateChoice(hide)

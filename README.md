@@ -10,7 +10,8 @@ This extension aims to provide a solution to those willing to run Hide Group on 
 
 ## Changelog
 
-* Version 1.3.0: Fix siphon for subsclassing.
+* Version 1.3.1: Improve performance of subclassing check.
+* Version 1.3.0: Fix siphon for subclassing.
 * Version 1.2.6: Fix a necro-specific issue on multi-instances fights, such as SE Chimera boss fight (special thanks to Lulu_Laventus for testing). Add a debug toggle option in the menu.
 * Version 1.2.5: Add chinese translation (done by justjavac).
 * Version 1.2.4: Fix showing group members immediately after disabling HideGroup.
