@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Extract version
-version=`grep -Po "(?<=Version: )[0-9]+\.[0-9]+\.[0-9]+" HideGroupNecro.txt`
+version=`grep -Po "(?<=Version: )[0-9]+\.[0-9]+\.[0-9]+" HideGroupNecro.addon`
 # Package ZIP
 mkdir -p HideGroupNecro
-cp HideGroupNecro.txt HideGroupNecro/
+cp HideGroupNecro.addon HideGroupNecro/
 cp *.lua HideGroupNecro/
 cp *.xml HideGroupNecro/
 mkdir -p HideGroupNecro/locales

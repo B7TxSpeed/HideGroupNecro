@@ -3,7 +3,7 @@ HideGroupNecro = HideGroupNecro or {
 	name = "HideGroupNecro",
 	label = "HideGroup|c5050ffNecro|r",
 	author = "|c00fffe@B7TxSpeed|r",
-	version = "1.3.1",
+	version = "1.3.2",
 }
 local HG = HideGroupNecro
 local EM = EVENT_MANAGER
