@@ -10,6 +10,7 @@ This extension aims to provide a solution to those willing to run Hide Group on 
 
 ## Changelog
 
+* Version 1.4.0: Console compatible version.
 * Version 1.3.2: Add dependency version check.
 * Version 1.3.1: Improve performance of subclassing check.
 * Version 1.3.0: Fix siphon for subclassing.

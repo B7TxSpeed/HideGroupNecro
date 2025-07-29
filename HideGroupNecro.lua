@@ -3,7 +3,7 @@ HideGroupNecro = HideGroupNecro or {
 	name = "HideGroupNecro",
 	label = "HideGroup|c5050ffNecro|r",
 	author = "|c00fffe@B7TxSpeed|r",
-	version = "1.3.2",
+	version = "1.4.0",
 }
 local HG = HideGroupNecro
 local EM = EVENT_MANAGER
@@ -64,6 +64,10 @@ local function ForceGroupVisible()
 	end, 20)
   end
 
+  local function IsPCUI()
+	return not IsConsoleUI()
+  end
+
 --- Picked from Wheels HideGroup 2.1
 function HG.hideMembers(enable)
 	if enable then
@@ -75,16 +79,20 @@ function HG.hideMembers(enable)
 			HG.savedVariables.GroupMemberNameplates = GetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES)
 			HG.savedVariables.GroupMemberHealthBars = GetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS)
 		end
-		SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES, HG.nameplateChoice(HG.savedVariables.HideNameplates))
-		SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, HG.nameplateChoice(HG.savedVariables.HideHealthBars))
+		if IsPCUI() then
+			SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES, HG.nameplateChoice(HG.savedVariables.HideNameplates))
+			SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, HG.nameplateChoice(HG.savedVariables.HideHealthBars))
+		end
 	else
 		debugMessage("ShowGroup")
 		ForceGroupVisible()
 		groupIsHidden = false
 		if HG.savedVariables.HideState ~= enable then
 			d("HideGroupNecro: Showing group members")
-			SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES, tostring(HG.savedVariables.GroupMemberNameplates))
-			SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, tostring(HG.savedVariables.GroupMemberHealthBars))
+			if IsPCUI() then
+				SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES, tostring(HG.savedVariables.GroupMemberNameplates))
+				SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, tostring(HG.savedVariables.GroupMemberHealthBars))
+			end
 		end
 	end
 	HG.savedVariables.HideState = enable
@@ -134,8 +142,11 @@ function HG.init(event, addon)
 		["Debug"] = false,
 	}
 	HG.savedVariables = ZO_SavedVars:New("HideGroupNecroSavedVars", 1, nil, HG.defaults, GetWorldName())
-	
-	ZO_CreateStringId('SI_BINDING_NAME_HIDEGROUPNECRO_TOGGLE', 'Show/Hide Group Members')
+
+	if IsPCUI() then
+		ZO_CreateStringId('SI_BINDING_NAME_HIDEGROUPNECRO_TOGGLE', 'Show/Hide Group Members')
+	end
+
 	SLASH_COMMANDS["/hidegroup"] = HG.switchCommand
 
 	EM:RegisterForEvent(HG.name.."PlayerActivated", EVENT_PLAYER_ACTIVATED, playerActivatedHandler)

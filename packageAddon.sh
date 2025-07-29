@@ -9,6 +9,10 @@ cp *.lua HideGroupNecro/
 cp *.xml HideGroupNecro/
 mkdir -p HideGroupNecro/locales
 cp locales/*.lua HideGroupNecro/locales/
+mkdir -p HideGroupNecro/Console
+cp Console/* HideGroupNecro/Console/
+mkdir -p HideGroupNecro/PC
+cp PC/* HideGroupNecro/PC/
 # Create ZIP and clean directory
 "C:\Program Files\7-Zip\7z" a -tzip HideGroupNecro-$version.zip HideGroupNecro
 rm -rf HideGroupNecro
