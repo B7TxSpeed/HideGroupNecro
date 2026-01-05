@@ -3,7 +3,7 @@ HideGroupNecro = HideGroupNecro or {
 	name = "HideGroupNecro",
 	label = "HideGroup|c5050ffNecro|r",
 	author = "|c00fffe@B7TxSpeed|r",
-	version = "1.4.0",
+	version = "1.5.0",
 }
 local HG = HideGroupNecro
 local EM = EVENT_MANAGER
@@ -11,6 +11,22 @@ local SM = SCENE_MANAGER
 
 -- Utility variables
 local groupIsHidden = false
+
+-- Necro specific ids
+local GRAVE_LORD_SKILL_LINE_ID = 131
+local LIVING_DEATH_SKILL_LINE_ID = 133
+
+local siphonSkillIds = {
+	115924, -- Shocking Siphon
+	118008, -- Mystic Siphon
+	118763, -- Detonating Siphon
+}
+
+local tetherSkillIds = {
+	115926, -- Restoring Tether
+	118070, -- Braided Tether
+	118122, -- Mortal Coil
+}
 
 --- Debug function
 local function debugMessage(message)
@@ -20,25 +36,31 @@ local function debugMessage(message)
 end
 
 -- Subclassing filter
-local function IsAtLeastOneSkillLineActive(skillLineIds)
-	for _, skillLineId in ipairs(skillLineIds) do
-		local skillLineData = SKILLS_DATA_MANAGER:GetSkillLineDataById(skillLineId)
-		if skillLineData and skillLineData:IsActive() then
-			return true
+local function IsSkillLineActive(skillLineId)
+	local skillLineData = SKILLS_DATA_MANAGER:GetSkillLineDataById(skillLineId)
+	return skillLineData and skillLineData:IsActive()
+end
+
+
+-- Skill filter
+local function IsAtLeastOneSkillSlotted(skillIds)
+	for i = 3, 7 do
+		local slot1 = GetSlotBoundId(i, HOTBAR_CATEGORY_PRIMARY) -- Frontbar skill
+		local slot2 = GetSlotBoundId(i, HOTBAR_CATEGORY_BACKUP) -- Backbar skill
+		for _, skillId in ipairs(skillIds) do
+			if skillId == slot1 or skillId == slot2 then
+				debugMessage("Necro skill found with id: " .. skillId)
+				return true
+			end
 		end
 	end
-
 	return false
 end
 
-local necroSkillLineIds = {
-	131, -- Grave Lord
-	-- Bone Tyrant can be ignored since hiding corpses does not hinder its skills.
-	133, -- Living Death
-}
 
 local function isNecro()
-	return IsAtLeastOneSkillLineActive(necroSkillLineIds)
+	return IsSkillLineActive(GRAVE_LORD_SKILL_LINE_ID) and IsAtLeastOneSkillSlotted(siphonSkillIds)
+	or IsSkillLineActive(LIVING_DEATH_SKILL_LINE_ID) and IsAtLeastOneSkillSlotted (tetherSkillIds)
 end
 
 function HG.nameplateChoice(hide)
@@ -106,7 +128,7 @@ end
 
 local function playerCombatStateHandler(_, inCombat)
 	-- Player's combat state has changed
-	if inCombat and HG.savedVariables.HideState and isNecro() and groupIsHidden then
+	if inCombat and HG.savedVariables.HideState and groupIsHidden and isNecro() then
 		debugMessage("ShowGroup for necro")
 		SetCrownCrateNPCVisible(false)
 		groupIsHidden = false

@@ -10,6 +10,7 @@ This extension aims to provide a solution to those willing to run Hide Group on 
 
 ## Changelog
 
+* Version 1.5.0: Add necro skill filter for better experience when using necro skill line without siphon/tether skill.
 * Version 1.4.0: Console compatible version.
 * Version 1.3.2: Add dependency version check.
 * Version 1.3.1: Improve performance of subclassing check.
