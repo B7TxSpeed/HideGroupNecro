@@ -46,24 +46,44 @@ function HG.loadMenu()
             name = function() return GetString(HG_MENU_OPTIONAL_SETTINGS) end,
         },
         {
-            type = "checkbox",
-            name = function() return GetString(HG_MENU_HIDE_NAMEPLATES) end,
-            getFunc = function() return HG.savedVariables.HideNameplates end,
+            type = "dropdown",
+            name = function() return GetString(HG_MENU_NAMEPLATE_MODE) end,
+            choices = {
+                GetString(HG_MENU_CHOICE_NEVER),
+                GetString(HG_MENU_CHOICE_ALWAYS),
+                GetString(HG_MENU_CHOICE_INJURED),
+            },
+            choicesValues = {
+                NAMEPLATE_CHOICE_NEVER,
+                NAMEPLATE_CHOICE_ALWAYS,
+                NAMEPLATE_CHOICE_INJURED,
+            },
+            getFunc = function() return HG.savedVariables.NameplateMode end,
             setFunc = function(value)
-                HG.savedVariables.HideNameplates = value
-                if HG.savedVariables.HideState then SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES, HG.nameplateChoice(value)) end
+                HG.savedVariables.NameplateMode = value
+                if HG.savedVariables.HideState then SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES, tostring(value)) end
             end,
-            width = "half",
+            width = "full",
         },
         {
-            type = "checkbox",
-            name = function() return GetString(HG_MENU_HIDE_HEALTHBARS) end,
-            getFunc = function() return HG.savedVariables.HideHealthBars end,
+            type = "dropdown",
+            name = function() return GetString(HG_MENU_HEALTHBAR_MODE) end,
+            choices = {
+                GetString(HG_MENU_CHOICE_NEVER),
+                GetString(HG_MENU_CHOICE_ALWAYS),
+                GetString(HG_MENU_CHOICE_INJURED),
+            },
+            choicesValues = {
+                NAMEPLATE_CHOICE_NEVER,
+                NAMEPLATE_CHOICE_ALWAYS,
+                NAMEPLATE_CHOICE_INJURED,
+            },
+            getFunc = function() return HG.savedVariables.HealthBarMode end,
             setFunc = function(value)
-                HG.savedVariables.HideHealthBars = value
-                if HG.savedVariables.HideState then SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, HG.nameplateChoice(value)) end
+                HG.savedVariables.HealthBarMode = value
+                if HG.savedVariables.HideState then SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, tostring(value)) end
             end,
-            width = "half",
+            width = "full",
         },
     }
     LAM:RegisterOptionControls(HG.name.."Menu", optionsData)

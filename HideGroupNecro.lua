@@ -3,7 +3,7 @@ HideGroupNecro = HideGroupNecro or {
 	name = "HideGroupNecro",
 	label = "HideGroup|c5050ffNecro|r",
 	author = "|c00fffe@B7TxSpeed|r",
-	version = "1.5.0",
+	version = "1.5.1",
 }
 local HG = HideGroupNecro
 local EM = EVENT_MANAGER
@@ -63,14 +63,6 @@ local function isNecro()
 	or IsSkillLineActive(LIVING_DEATH_SKILL_LINE_ID) and IsAtLeastOneSkillSlotted (tetherSkillIds)
 end
 
-function HG.nameplateChoice(hide)
-    if hide then
-        return tostring(NAMEPLATE_CHOICE_NEVER)
-    else
-        return tostring(NAMEPLATE_CHOICE_ALWAYS)
-    end
-end
-
 -- Picked from SpeedRun
 local function ForceGroupVisible()
 	if not IsPlayerActivated() then return end
@@ -102,8 +94,8 @@ function HG.hideMembers(enable)
 			HG.savedVariables.GroupMemberHealthBars = GetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS)
 		end
 		if IsPCUI() then
-			SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES, HG.nameplateChoice(HG.savedVariables.HideNameplates))
-			SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, HG.nameplateChoice(HG.savedVariables.HideHealthBars))
+			SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES, tostring(HG.savedVariables.NameplateMode))
+			SetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS, tostring(HG.savedVariables.HealthBarMode))
 		end
 	else
 		debugMessage("ShowGroup")
@@ -158,8 +150,8 @@ function HG.init(event, addon)
 	HG.defaults = {
 		["GroupMemberNameplates"] = GetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_NAMEPLATES),
 		["GroupMemberHealthBars"] = GetSetting(SETTING_TYPE_NAMEPLATES, NAMEPLATE_TYPE_GROUP_MEMBER_HEALTHBARS),
-		["HideNameplates"] = true,
-		["HideHealthBars"] = true,
+		["NameplateMode"] = NAMEPLATE_CHOICE_NEVER,
+		["HealthBarMode"] = NAMEPLATE_CHOICE_NEVER,
 		["HideState"] = false,
 		["Debug"] = false,
 	}
